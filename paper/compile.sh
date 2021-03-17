@@ -1,6 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-pdflatex /home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/main.tex
-bibtex /home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/main
-pdflatex /home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/main.tex
-pdflatex /home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/main.tex
+pushd $1
+
+pdflatex main;
+bibtex main;
+makeglossaries main;
+makeindex -s main.ist -o main.gls main.glo;
+pdflatex main;
+pdflatex main;
+
+popd;
