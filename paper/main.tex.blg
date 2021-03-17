@@ -1,5 +1,0 @@
-[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
-[0] Config.pm:307> INFO - Logfile is '/home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/paper/main.tex.blg'
-[44] biber:322> INFO - === Wed Mar 17, 2021, 12:45:27
-[120] Utils.pm:309> ERROR - Cannot find '/home/ald/Documents/Heriot-Watt/MSCPROJ/thesis/paper/main.tex.bcf'!
-[120] Biber.pm:132> INFO - ERRORS: 1
