@@ -1,0 +1,37 @@
+\begin{thebibliography}{}
+
+\bibitem[Benson, 2017]{opensource}
+Benson, D. (2017).
+\newblock 10 most popular programming languages - open source for you.
+\newblock
+  \url{https://www.opensourceforu.com/2017/03/most-popular-programming-languages/}.
+\newblock (Accessed on 03/09/2021).
+
+\bibitem[Carbonelle, 2021]{pypl}
+Carbonelle, P. (2021).
+\newblock Pypl popularity of programming language index.
+
+\bibitem[Diakopoulous et~al., 2020]{ieee-spectrum}
+Diakopoulous, N., Bagavandas, M., Singh, G., and Kulkarni, P. (2020).
+\newblock Interactive: The top programming languages 2020 - ieee spectrum.
+\newblock
+  \url{https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2020}.
+\newblock (Accessed on 03/09/2021).
+
+\bibitem[Jansen, 2021]{tiobe}
+Jansen, P. (2021).
+\newblock index | tiobe - the software quality company.
+\newblock \url{https://www.tiobe.com/tiobe-index/?20210304%20%20%20%20%20%20}.
+\newblock (Accessed on 03/09/2021).
+
+\bibitem[O'Grady, 2021]{redmonk}
+O'Grady, S. (2021).
+\newblock The redmonk programming language rankings: January 2021.
+
+\bibitem[Python, 2021]{whatispython}
+Python (2021).
+\newblock What is python? executive summary | python.org.
+\newblock \url{https://www.python.org/doc/essays/blurb/}.
+\newblock (Accessed on 03/10/2021).
+
+\end{thebibliography}
