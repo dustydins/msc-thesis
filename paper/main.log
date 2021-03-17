@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.31)  17 MAR 2021 12:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.31)  17 MAR 2021 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,7 +709,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<./Figures/HWUlogo.jpg, id=134, 455.7828pt x 227.6505pt>
+<./Figures/HWUlogo.jpg, id=150, 455.7828pt x 227.6505pt>
 File: ./Figures/HWUlogo.jpg Graphic file (type jpg)
 <use ./Figures/HWUlogo.jpg>
 Package pdftex.def Info: ./Figures/HWUlogo.jpg  used on input line 110.
@@ -802,7 +802,7 @@ Chapter 2.
 [2
 
 ]
-<media/literature/redmonk.png, id=269, 1053.9375pt x 828.09375pt>
+<media/literature/redmonk.png, id=292, 1053.9375pt x 828.09375pt>
 File: media/literature/redmonk.png Graphic file (type png)
 <use media/literature/redmonk.png>
 Package pdftex.def Info: media/literature/redmonk.png  used on input line 38.
@@ -812,7 +812,7 @@ Overfull \hbox (1.9129pt too wide) in paragraph at lines 38--40
  [] 
  []
 
-<media/literature/pypl.png, id=275, 965.6075pt x 574.145pt>
+<media/literature/pypl.png, id=298, 965.6075pt x 574.145pt>
 File: media/literature/pypl.png Graphic file (type png)
 <use media/literature/pypl.png>
 Package pdftex.def Info: media/literature/pypl.png  used on input line 51.
@@ -823,7 +823,7 @@ Overfull \hbox (1.9129pt too wide) in paragraph at lines 51--53
  []
 
 [3 <./media/literature/redmonk.png (PNG copy)>]
-<media/literature/ieee-spectrum-all.png, id=290, 634.37pt x 729.72626pt>
+<media/literature/ieee-spectrum-all.png, id=314, 634.37pt x 729.72626pt>
 File: media/literature/ieee-spectrum-all.png Graphic file (type png)
 <use media/literature/ieee-spectrum-all.png>
 Package pdftex.def Info: media/literature/ieee-spectrum-all.png  used on input 
@@ -835,7 +835,7 @@ Overfull \hbox (1.9129pt too wide) in paragraph at lines 68--70
  []
 
 [4 <./media/literature/pypl.png>]
-<media/literature/tiobe-very-long-term-history.png, id=302, 954.56625pt x 514.9
+<media/literature/tiobe-very-long-term-history.png, id=325, 954.56625pt x 514.9
 2375pt>
 File: media/literature/tiobe-very-long-term-history.png Graphic file (type png)
 
@@ -873,12 +873,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--144
 
  []
 
-) (./Appendices/AppendixA.tex [7] [8]
+) (./Chapters/3-Methodology.tex [7] [8]
+Chapter 3.
+------------------------------------------------------------------------------
+ 3 Methodology
+------------------------------------------------------------------------------
+) (./Chapters/4-Implementation.tex [9
+
+]
+Chapter 4.
+------------------------------------------------------------------------------
+ 4 Implementation
+------------------------------------------------------------------------------
+) (./Chapters/5-Analysis.tex [10
+
+]
+Chapter 5.
+------------------------------------------------------------------------------
+ 5 Analysis
+------------------------------------------------------------------------------
+) (./Chapters/6-Conclusions.tex [11
+
+]
+Chapter 6.
+------------------------------------------------------------------------------
+ 6 Conclusions
+------------------------------------------------------------------------------
+) (./Appendices/AppendixA.tex [12
+
+]
 Appendix A.
 ------------------------------------------------------------------------------
  A Appendix Title Here
 ------------------------------------------------------------------------------
-) [9
+) [13
 
 ]
 ------------------------------------------------------------------------------
@@ -920,31 +948,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--20
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 334.
- [10
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
+ [14
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 334.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 334.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 334.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B8A4E50EBF2DEBCF65C8C0D79A48D801;4781.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 334.
+(rerunfilecheck)             Checksum: 5E17489B5C2A2B6EDA6296E0704EAA8E;5233.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 176 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 17395 strings out of 481239
- 252781 string characters out of 5920376
- 557037 words of memory out of 5000000
- 32247 multiletter control sequences out of 15000+600000
+ 17427 strings out of 481239
+ 253293 string characters out of 5920376
+ 557181 words of memory out of 5000000
+ 32259 multiletter control sequences out of 15000+600000
  543794 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,11n,79p,980b,653s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,11n,79p,980b,657s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
@@ -958,10 +986,10 @@ pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmtt10.pfb>
-Output written on main.pdf (22 pages, 1684276 bytes).
+Output written on main.pdf (26 pages, 1688028 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
- 75 named destinations out of 1000 (max. 500000)
- 274 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 455 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
+ 306 words of extra memory for PDF output out of 10000 (max. 10000000)
 

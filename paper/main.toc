@@ -31,7 +31,11 @@
 \contentsline {subsection}{\numberline {2.3.2}Z3}{8}{subsection.38}%
 \contentsline {subsubsection}{\numberline {2.3.2.1}Go-Z3}{8}{subsubsection.39}%
 \contentsline {subsection}{\numberline {2.3.3}Sapphire}{8}{subsection.40}%
+\contentsline {chapter}{\numberline {3}Methodology}{9}{chapter.41}%
+\contentsline {chapter}{\numberline {4}Implementation}{10}{chapter.42}%
+\contentsline {chapter}{\numberline {5}Analysis}{11}{chapter.43}%
+\contentsline {chapter}{\numberline {6}Conclusions}{12}{chapter.44}%
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Appendix Title Here}{9}{appendix.41}%
+\contentsline {chapter}{\numberline {A}Appendix Title Here}{13}{appendix.45}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{10}{dummy.42}%
+\contentsline {chapter}{Bibliography}{14}{dummy.46}%
