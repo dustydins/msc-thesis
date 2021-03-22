@@ -28,7 +28,7 @@ Consequently, the testing and verification of \gls{ml} for the use of controllin
 
 \begin{figure}[H]
 	\centering
-        \includegraphics[width=1.0\textwidth]{media/introduction/sticker.png}
+        \includegraphics[width=0.8\textwidth]{media/introduction/sticker.png}
         \rule{35em}{0.5pt}
         \caption[Google's Aversarial Patch]{\textbf{Google's Adversarial Patch} -- An example of a method to create targeted adversarial attacks on \glspl{nn} by adding carefully designed noise via a physical patch~\citep{brown2018}.}\label{fig:adversarialpatch}
 \end{figure}
@@ -49,6 +49,7 @@ lead to a lower degree of understanding than software that is explicitly program
 commonly referred to as \textit{black box} systems, where the internal mechanisms are not revealed; in other words, it is impossible to understand a model just by
 looking at its parameters~\citep{molnar2019}.
 
+%-- challenge of lack of formal verification libraries for languages adopted by machine learning community.
 
 %----------------------------------------------------------------------------------------
 % Section 2
@@ -57,14 +58,47 @@ looking at its parameters~\citep{molnar2019}.
 
 Public calls for \textit{sensible} or \textit{verifiable \Gls{ai}} have been raised in recent years due to ever increasing
 development of complex and pervasive systems that are entering into our everyday lives~\citep{russell2016}.
-Although there have been advances in research concerned with the verification of \Glspl{mas}~\citep{lomuscio2017, kouvaros2016},
-there has until recently been very little work in the area of formally verifying \gls{ml} algorithms.
 
-%-- lack of verification tools across different languages used for ML
-%-- python, although the most popular pl for ml, is dynamically typed, causing challenges for formal verification
-%-- languages typically used within ML communities are not designed, or have lack of developed verification tools
+% Although there have been advances in research concerned with the verification of \Glspl{mas}~\citep{lomuscio2017, kouvaros2016},
+% there has until recently been very little work in the area of formally verifying \gls{ml} algorithms.
+
+Formal verification of deterministic software systems has seen significant progress since the early
+verification systems developed in languages such as Lisp, Ada, and Pascal~\citep{polak1979, boyer1990, guaspari1993}. However,
+verification of non-deterministic systems has seen relatively little progress, with the exception of
+\Glspl{mas}~\citep{lomuscio2017, kouvaros2016}.
+
+
+Indeed, due to the neoteric nature of \gls{aiv} research, there are limited resources with regard to the 
+programming tools available for researchers in this area. This is especially true for work
+within \gls{ml}, as the programming languages and tools commonly used for \textit{traditional} verifcation are often
+disparate from those widely adopted by the \gls{ml} developer communities.
+
+Popular programming languages used for \gls{ml} such as Python or Matlab currently have comparitively less
+formal verification tools available than those concerned with system infrastructure or embedded applications.
+Additionally, \gls{aiv} toolkits for \gls{ml} tasks in these languages are still in early stages of development, and mainly focused
+on the verification of \glspl{nn}~\citep{kokke2020}. 
+
+Consequently, there is a need for new and scalable
+\gls{aiv} tools to be developed across a wider range of programming languages used for \gls{ml} tasks. 
+This is especially important in industry, such that there should be more opportunities to
+integrate verification of \gls{ml} models within the same programming languages used within
+a product's infrastructure.
+
+% Some progress has been made recently, (sapphire, maribou).
+
+% talk about go, and machine learning
 
 %----------------------------------------------------------------------------------------
 % Section 3
 %----------------------------------------------------------------------------------------
 \section{Aims \& Objectives}
+
+%-- aims
+% explore the methods for efficiently implementing formal verification tools in a wide range of
+% programming languages used for machine learning
+Investigate different approaches for implementing formal verification tools in a wide range of programming 
+languages used for \gls{ml}
+
+%-- objectives
+% implement a formal verification library for feed forward neural networks in Go
+Objective is to implement a formal verification toolkit for feed forward neural networks in the Go programming language.
