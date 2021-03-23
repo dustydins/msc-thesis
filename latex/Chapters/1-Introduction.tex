@@ -67,7 +67,8 @@ verification of non-deterministic systems has seen relatively little progress, w
 Indeed, due to the neoteric nature of \gls{aiv} research, there are limited resources with regard to the 
 programming tools available for researchers in this area. This is especially true for work
 within \gls{ml}, as the programming languages and tools commonly used for \textit{traditional} verifcation are often
-disparate from those widely adopted by the \gls{ml} developer communities.
+disparate from those widely adopted by the \gls{ml} communities. 
+% Many libraries such as Coq and Z3 need additional bindings developed to work in these languages
 
 %-- ml languages
 Popular programming languages used for \gls{ml} such as Python or Matlab currently have comparitively less
@@ -76,36 +77,50 @@ Additionally, \gls{aiv} toolkits for \gls{ml} tasks in these languages are still
 on the verification of \glspl{nn}~\citep{kokke2020}. 
 
 %-- programming languages are forever changing
-Furthermore, the landscape of \gls{ml} programming is forever shifting, with once popular languages
-becoming more and more obselete, a plethora of new languages emerging that have been created
-specifically with \gls{ml} in mind, and many useful \gls{ml} tools constantly being developed for existing languages.
+Furthermore, the landscape of \gls{ml} programming itself is forever shifting, and while there is yet a programming 
+language dedicated for \gls{ml} tasks, huge efforts from programming language designers have been made 
+in developing \gls{ml} libraries for existing languages. This is necessary in order to handle the 
+extremely high computational demands, and to simplify 
+model languages to make them easier to add domain-specific optimisations and features~\citep{innes2017}.
 
-%-- talk about go, and machine learning
-The Go programming language, widely known as Golang, is a prime example of such change. It was created in 2009 by Google 
-in order to improve upon server-side languages with concurrency in mind. Has recently seen growing popularity 
-in its newly developed machine learning libraries, allowing Go developers to implement \gls{ml} models within 
-their system infrastructure without the need of binding to another language such as Python.
+%- GO
+A prime example of such development can be seen in the Go programming language, or \textit{GoLang}. A relatively new language, originally developed by Google in 2009 with the intention
+of creating a modern general-purpose language similar to C. 
+GoLang has seen a surge in popularity within the \gls{ml} community since
+the release of its first extensive \gls{ml} package, \textit{Gorgonia}, in 2016, which heavily relies on the use of expression graphs~\citep{chew2016}.
+This package allows GoLang developers
+to take advantage of automatic and symbolic differentiation, gradient descent optimisations, numerical stabilisation,
+added support for CUDA/GPGPU computation, and comparitively quick speeds than its Python counterparts (Theano and TensorFlow)~\citep{golang2020}.
+
+% - Go as a formal language
 
 %-- need for aiv development in other languages
-Consequently, there is a need for new and scalable
-\gls{aiv} tools to be developed across a wider range of programming languages used for \gls{ml} tasks. 
-This is especially important in industry, such that there should be more opportunities to
-integrate the verification of \gls{ml} models within the same programming languages used within
-a product's infrastructure.
-
-
+Consequently, as programming languages continue to develop \gls{ml} capabilities, there is a need for 
+exploring new and scalable approaches for developing \gls{aiv} tools in these languages.
+This is especially important for programming languages which are being adopted by industry to implement \gls{ml} models
+for the use within safety-critical or pervasive systems.
 
 %----------------------------------------------------------------------------------------
-% Section - Aims & Objectives
+% Section 3
 %----------------------------------------------------------------------------------------
 \section{Aims \& Objectives}
 
 %-- aims
 % explore the methods for efficiently implementing formal verification tools in a wide range of
 % programming languages used for machine learning
-Investigate different approaches for implementing formal verification tools in a wide range of programming 
-languages used for \gls{ml}
 
-%-- objectives
-% implement a formal verification library for feed forward neural networks in Go
-Objective is to implement a formal verification toolkit for feed forward neural networks in the Go programming language.
+% Investigate different approaches for implementing formal verification tools in a wide range of programming
+% languages used for \gls{ml}
+
+%-- talk about go, and machine learning
+
+%- Go safety critical applications
+
+%- aim
+The aim of this project is to explore potential formal approaches for verifying feed-forward \glspl{nn} in GoLang, and
+gain insights into the feasibility of a general approach to formal methods for \gls{ml} that can be implemented across a wide range
+of programming languages.
+
+%- objective
+To achieve this, the primary objective is to implement a GoLang package which allows the binding of Gorgonia \gls{nn} models to 
+Z3 SMT solvers. Similar to the Sapphire library written in Python~\citep{kokke2020}.
