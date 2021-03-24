@@ -117,10 +117,28 @@ for the use within safety-critical or pervasive systems.
 %- Go safety critical applications
 
 %- aim
-The aim of this project is to explore potential formal approaches for verifying feed-forward \glspl{nn} in GoLang, and
-gain insights into the feasibility of a general approach to formal methods for \gls{ml} that can be implemented across a wide range
-of programming languages.
 
-%- objective
-To achieve this, the primary objective is to implement a GoLang package which allows the binding of Gorgonia \gls{nn} models to 
-Z3 SMT solvers. Similar to the Sapphire library written in Python~\citep{kokke2020}.
+The aim of this project is to investigate the current programming paradigms within \gls{ml} development,
+and to explore the suitability of current formal verification toolkits available to them. Subsequently,
+this thesis will aim to design and implement a GoLang formal methods framework for Gorgonia \glspl{nn},
+providing GoLang \gls{ml} developers with a set of tools which will allow them to produce safe and
+fair \gls{ai} applications.
+
+This framework will extend upon the work made by~\citep{kokke2020}, and the Sapphire library implemented in Python
+which successfully translates TensorFlow feed-forward \gls{nn} models to the Z3 \Gls{smt} solver created by Microsoft Research~\citep{demoura2008}.
+
+% - objective
+
+% To achieve this, the primary objective is to implement a GoLang package which allows the binding of Gorgonia \gls{nn} models to
+% Z3 SMT solvers. Similar to the Sapphire library written in Python~\citep{kokke2020}.
+
+To achieve this project's aims, the following objectives should be met:
+
+\begin{itemize}
+    \setlength\itemsep{0em}
+    \item \textit{Objective 1 -} Implement bindings that map the parameters of a Gorgonia \gls{nn} model to
+        Z3 variables.
+    \item \textit{Objective 2 -} Select data in order to train and verify \gls{nn} models using this project's formal methods framework.
+    \item \textit{Objective 3 -} Implement a series of \gls{nn} models in Gorgonia using the data sets mentioned in \textit{Objective 2}.
+    \item \textit{Objective 4 -} Verify the correctness of Gorgonia \glspl{nn} using the bindings mentioned in \textit{Objective 1}.
+\end{itemize}
