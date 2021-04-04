@@ -22,7 +22,7 @@ Many of these systems have so far only existed as proof of concepts, but are ste
 %-- prone to adversarial attacks
 Additionally, recent research has exposed broad vulnerabilities to adversarial attacks within data driven \gls{ml} algorithms,
 including \Glspl{nn}; where applying small but intentional perturbations to an input which are not noticible to humans,
-can lead to a model outputting an incorrect classification with high confidence.~\citep{goodfellow}.
+can lead to a model outputting an incorrect classification with high confidence~\citep{goodfellow}.
 An example of such an attack can be seen in \textit{Fig.~\ref{fig:adversarialpatch}}.
 Consequently, the testing and verification of \gls{ml} for the use of controlling safety-critical systems has become a focused area of research in recent years.
 
@@ -58,13 +58,14 @@ Public calls for \textit{sensible} or \textit{verifiable \Gls{ai}} have been rai
 development of complex and pervasive systems that are entering into our everyday lives~\citep{russell2016}.
 
 %-- current trends
+%-- TODO | change references to current verification systems
 Formal verification of deterministic software systems has seen significant progress since the early
 verification systems developed in languages such as Lisp, Ada, and Pascal~\citep{polak1979, boyer1990, guaspari1993}. However,
 verification of non-deterministic systems has seen relatively little progress, with the exception of
 \Glspl{mas}~\citep{lomuscio2017, kouvaros2016}.
 
 %-- different languages often used for ml, than embedded/sys programming where formal verification widely used
-Indeed, due to the neoteric nature of \gls{aiv} research, there are limited resources with regard to the 
+Indeed, due to the contemporary nature of \gls{aiv} research, there are limited resources with regard to the 
 programming tools available for researchers in this area. This is especially true for work
 within \gls{ml}, as the programming languages and tools commonly used for \textit{traditional} verifcation are often
 disparate from those widely adopted by the \gls{ml} communities. 
@@ -84,6 +85,7 @@ extremely high computational demands, and to simplify
 model languages to make them easier to add domain-specific optimisations and features~\citep{innes2017}.
 
 %- GO
+
 A prime example of such development can be seen in the Go programming language, or \textit{GoLang}. A relatively new language, originally developed by Google in 2009 with the intention
 of creating a modern general-purpose language similar to C. 
 GoLang has seen a surge in popularity within the \gls{ml} community since
@@ -92,7 +94,7 @@ This package allows GoLang developers
 to take advantage of automatic and symbolic differentiation, gradient descent optimisations, numerical stabilisation,
 added support for CUDA/GPGPU computation, and comparitively quick speeds than its Python counterparts (Theano and TensorFlow)~\citep{golang2020}.
 
-% - Go as a formal language
+% -- TODO | discuss Microsoft's efforts in F (as annotated by Katya)
 
 %-- need for aiv development in other languages
 Consequently, as programming languages continue to develop \gls{ml} capabilities, there is a need for 
@@ -136,9 +138,11 @@ To achieve this project's aims, the following objectives should be met:
 
 \begin{itemize}
     \setlength\itemsep{0em}
-    \item \textit{Objective 1 -} Implement bindings that map the parameters of a Gorgonia \gls{nn} model to
+    \item \textit{Objective 1 -} Conduct a feasibility study with regards to developing a formal methods framework for \glspl{nn} in Go.
+    \item \textit{Objective 2 -} Implement bindings that map the parameters of a Gorgonia \gls{nn} model to
         Z3 variables.
-    \item \textit{Objective 2 -} Select data in order to train and verify \gls{nn} models using this project's formal methods framework.
-    \item \textit{Objective 3 -} Implement a series of \gls{nn} models in Gorgonia using the data sets mentioned in \textit{Objective 2}.
-    \item \textit{Objective 4 -} Verify the correctness of Gorgonia \glspl{nn} using the bindings mentioned in \textit{Objective 1}.
+    \item \textit{Objective 3 -} Select data in order to train and verify \gls{nn} models using this project's formal methods framework.
+    \item \textit{Objective 4 -} Implement a series of \gls{nn} models in Gorgonia using the data sets mentioned in \textit{Objective 3}.
+    \item \textit{Objective 5 -} Verify the correctness of Gorgonia \glspl{nn} using the bindings mentioned in \textit{Objective 2}.
+    \item \textit{Objective 6 -} Make conclusions about the developed framework's benefits and limitations, and discuss future improvements to the methodology as described in \textit{Objective 1}.
 \end{itemize}
