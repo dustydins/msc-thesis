@@ -5,153 +5,132 @@
 \lhead{Chapter 2. \emph{Background \& Literature Review}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 This chapter will provide a background understanding to the important concepts that are required by this thesis, and explore the
-current trends within \gls{aiv} research.
-This includes an introduction to formal verification tools and their use for verifying \Glspl{nn}, 
-along with a discussion about the importance of developing \gls{aiv} tools across a wide range of programming languages.
-
-A high-level overview of programming languages that are used for \gls{ml} tasks, as well
-as a discussion of their popularity and usage within industry and academia will conclude this chapter.
+current trends within \Gls{aiv} research.
+This includes an introduction to formal verification, both within deterministic and non-deterministic systems; an overview of the
+current state of \Gls{nn} and deep learning research, and the programming paradigms used for their development; and finally an 
+investigation into the Go programming language infrastructure and the feasibility of using it for verifying \glspl{nn}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION Formal Verification
 %----------------------------------------------------------------------------------------
 
-\section{Formal Verification of AI}
+\section{Formal Verification}
+
+Formal verification is an extensive field which has seen development in many areas 
+of software engineering. As such, this section will attempt to provide a succinct 
+overview of the ideas behind formal verification while keeping the focus on areas
+related to this thesis.
 
 \subsection{Background}
-\subsection{Z3}
-\subsubsection{Bindings for Z3}
-Go-Z3 etc.
+
+
+\subsection{Current Frameworks}
+
+%----------------------------------------------------------------------------------------
+%	SECTION Formal Verification AI
+%----------------------------------------------------------------------------------------
+
+\section{Formal Verification of AI}
+
+This section will provide a more detailed investigation into the current research
+undertaken within \gls{aiv}, with a focus on \glspl{nn} and deep learning tasks.
+
+\subsection{Overview}
 
 \subsection{Sapphire}
 
-%-----------------------------------
-%	SUBSECTION Rankings
-%-----------------------------------
-\section{Programming Language Rankings and Metrics}
-The following section outlines the various programming language ranking systems and metrics used to
-determine the popularity of, and overall usage of programming languages. A combination of the following rankings will
-be used to assess the current trends for each programming language discussed in this paper.
+%----------------------------------------------------------------------------------------
+%	SECTION NEURAL NETWORKS
+%----------------------------------------------------------------------------------------
+\section{Neural Networks \& Deep Learning}
+This section aims to clarify the concepts of \glspl{nn} and deep learning, as well as
+to show the successes and failures of the field in both academia and industry since
+their rise to fame.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{RedMonk Programming Language Rankings}
+\subsection{Overview}
 
-RedMonk is a developer-focused industry analyst firm that curates a quarterly ranking of programming languages. 
-The rankings are created by looking at a programming language's presence on GitHub and Stack Overflow, attempting
-to reflect both the usage of the language from GitHub, and the amount of discussion regarding a language from Stack Overflow~\citep{redmonk}.
-
-This ranking uses a simple metric that can be used for gaining an overview of a programming language's popularity within industry. However, due to quantifying discussions from 
-Stack Overflow, older languages with a small set of built-in library functions such as C can be at a disadvantage
-compared to newer languages and those with a large set of built-in library functions~\citep{opensource}.
-
-\smallskip
+\glspl{nn} are learning algorithms based on a loose analogy of how the
+human brain functions. They consist of nodes, or neurons
+(\textit{see Fig.~\ref{fig:an}}), which act as functions that output a
+nonlinear combination of weighted inputs and a bias~\citep{Dreyfus2005}.
+Learning is achieved by adjusting the weights on the connections between
+nodes, which are analogous to synapses and neurons in nature~\citep{Sammut2010}.
 
 \begin{figure}[H]
-	\centering
-        \includegraphics[width=1.0\textwidth]{media/literature/redmonk.png}
+    \centering
+        \includegraphics[width=0.5\textwidth]{media/literature/artificial-neuron1.png}
         \rule{35em}{0.5pt}
-        \caption[RedMonk Programming Language Rankings for first quarter of 2021]{\textbf{RedMonk Rankings Q121} -- Comparing the presence of programming languages from GitHub and Stack Overflow~\citep{redmonk}.}\label{fig:redmonk}
-\end{figure}
-
-\textit{Fig.~\ref{fig:redmonk}} shows an example of the current visualisation tools available from this index.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{PYPL PopularitY of Programming Language Index}
-
-\begin{figure}[H]
-	\centering
-        \includegraphics[width=1.0\textwidth]{media/literature/pypl.png}
-        \rule{35em}{0.5pt}
-        \caption[PYPL PopularitY of Programming Language Index]{\textbf{PYPL Rankings} -- An overview of the share of language tutorial Google searches over the last 15 years~\citep{pypl}. \textit{This chart uses a logarithmic scale.}}\label{fig:pypl}
-\end{figure}
-
-According to the \Gls{pypl}, which uses the amount in which 
-a language tutorial is searched on Google as a metric for popularity, Python has been the most popular language
-for the last few years (\textit{see Fig.~\ref{fig:pypl}}), currently sitting on 30.44\% of tutorial searches~\citep{pypl}.
-
-Several reasons could be contributing to this popularity, including its versatility across a wide range
-of tasks, being platform agnostic, and easy to learn for beginners due to a large community and \textit{readable} syntax. However,
-PYPL does not look at either the performance of languages or their popularity within specific tasks such as machine learning.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{IEEE Spectrum Ranking of Programming Languages}
-
-\begin{figure}[H]
-	\centering
-        \includegraphics[width=0.8\textwidth]{media/literature/ieee-spectrum-all.png}
-        \rule{35em}{0.5pt}
-        \caption[Top 10 Overall IEEE Spectrum Language Ranking]{\textbf{Top 10 Overall IEEE Spectrum Language Ranking} --Default metrics ranking top 10 programming languages~\citep{ieee-spectrum}.}\label{fig:ieee-all}
+        \caption[Example of an artifcial neuron]{\textbf{Artificial Neuron} -- a nonlinear bounded function $y = f(x_{1}, x_{2},\ldots,x_{n};w_{2},\ldots,w_{n})$ where the ${x_{i}}$ are the input values and the  ${w_{i}}$ are the weights of the neuron~\citep{Dreyfus2005}.}\label{fig:an}
 \end{figure}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{TIOBE}
+A weight is assigned to each of a neuron's inputs. They are the co-efficients of a neuron's equation and therefore reflect the importance of individual inputs. A bias is a constant value assigned to each neuron. They are used to shift a neuron's activation function output in a positive or negative direction~\citep{Malik2019weights}.
+
+A \Gls{nn} is made up of a series of layers; an input layer,
+a number of hidden layers, and an output layer. Each layer is
+made up of a set of neurons, where each neuron is fully connected
+to all neurons in the previous layer. Each neuron within a single layer
+does not share connections with, and operates completely independently from one another~\citep{cs231n}.
+
+
+Using the case of \Gls{cv} as an example, 
+the input layer of a \Gls{nn} consists of
+neurons encoding the values of image pixels (RGB or greyscale intensities).
+The encoding is typically achieved by passing the raw input 
+value through an activation function which outputs a normalised value. 
+Often, activation functions in modern \Glspl{nn} output non-linearities, 
+an example is to use a Sigmoid Function which maps an input to a value between 0 and 1 
+(\textit{see Fig.~\ref{fig:activation} \textit{left}})~\citep{Nielsen2015}.
+
+However a more common activation function found in current \gls{nn} models for \gls{cv} is the \gls{relu}.
+It also adds non-linearity to the output, however it maps the input to a value
+within the range of $0 \text{ and } \infty$ (\textit{see Fig.~\ref{fig:activation} \textit{right}})~\citep{Malik2019activation}.
 
 \begin{figure}[H]
-	\centering
-        \includegraphics[width=1.0\textwidth]{media/literature/tiobe-very-long-term-history.png}
-        \rule{35em}{0.5pt}
-        \caption[TIOBE Programming Language Index -- Long Term History]{\textbf{TIOBE Very Long Term History Programming Language Index} -- Long term history of programming languages, average positions for a period of 12 months~\citep{tiobe}.}\label{fig:tiobe-very-long-term}
+    \includegraphics[width=0.5\textwidth]{media/literature/sigmoid.png}
+    \includegraphics[width=0.5\textwidth]{media/literature/relu.png}
+    \rule{35em}{0.5pt}
+    \caption[Examples of Activation Functions]{\textit{Left}: The Sigmoid Function is one type of activation function. ''A bounded, differentiable, real function that is defined for all real input values and has a non negative derivative at each point''~\citep{Han1995}. \textit{Right}: An example of a \Gls{relu} activation function transforming $x$ to a value between $0 \text{ and } \infty$~\citep{Malik2019activation}.}\label{fig:activation}
 \end{figure}
+
+
+The output layer of a \gls{cv} classification network contains neurons representing the class
+scores of the task (\textit{see Fig.~\ref{fig:nn}}). For example, in a \gls{nn} attempting to classify handwritten
+digits, the output layer would contain 10 neurons, representing the digits 0 - 9.
+If the first neuron fires, i.e.\ has an output $\approx l,$ this will indicate that the
+network is confident the handwritten digit is 0, and so on~\citep{Nielsen2015}.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{media/literature/handwrittenDigitNN.png}
+    \rule{35em}{0.5pt}
+\caption[Example of a Neural Network]{Neural Network. Example of a \Gls{nn} to
+classify handwritten digits. The input is a single vector of 28x28 pixels, i.e. 784 neurons, and outputs
+10 neurons representing digits 0-9~\citep{Nielsen2015}.}\label{fig:nn}
+\end{figure}
+
+
+\subsection{Vulnerabilities to Adversarial Attacks}
+
+\subsection{Discrimination and Neural Networks}
 
 %----------------------------------------------------------------------------------------
-%	SECTION 1
+%	SECTION PROGRAMMING PARADIGMS FOR ML
 %----------------------------------------------------------------------------------------
+\section{Programming Paradigms for Machine Learning}
 
-\section{Overview of Programming Languages}
+\subsection{Computational Graphs}
+\subsection{Auto Differentiability}
 
-A plethora of programming languages have been developed over time, some dedicated and others extended for the purpose of \gls{ml}.
-This section will look at some of the most 
-commonly used languages within the field of \gls{ml}, and provide an overview of their strengths and weaknesses.
+%----------------------------------------------------------------------------------------
+%	SECTION PROGRAMMING The Go Programming Language
+%----------------------------------------------------------------------------------------
+\section{The Go Programming Language}
 
-%-----------------------------------
-%	SUBSECTION Python
-%-----------------------------------
-\subsection{Python}
+\subsection{Brief History}
+\subsection{Go for ML}
+\subsection{Go for Formal Verification}
 
-Python is an interpreted, object-oriented, high-level, dynamically typed programming language with dynamic semantics. It was initially designed in 1991 by Guido Van Rossum and subsequently
-developed by Python Software Foundation. Python's simple syntax emphasising readability was the main purpose of its creation, making it very attractive for Rapid Application Development and reducing
-the cost of program maintenance~\citep{whatispython}.\\
-
-use in machine learning\\
-
-Many versions of Python have since been released, and over time has seen the development of an extensive collection of community libraries used for a wide range of tasks. This
-has made Python one of the most versatile languages available today. Amongst these tasks, Python has become one of the most popular languages for \gls{ml} and data science.
-
-
-strengths\\
-
-weaknesses\\
-
-%-----------------------------------
-%	SUBSECTION CPP
-%-----------------------------------
-\subsection{CPP}
-
-%-----------------------------------
-%	SUBSECTION Matlab
-%-----------------------------------
-\subsection{Matlab}
-
-%-----------------------------------
-%	SUBSECTION Julia
-%-----------------------------------
-\subsection{Julia}
-
-%-----------------------------------
-%	SUBSECTION Go
-%-----------------------------------
-\subsection{Go}
-According to PYPL it has had the greatest increase in popularity since its release in 2015.
-
-A relatively new language compared to the others used in machine learning.
-
-Still in development, especially wrt machine learning tasks.\
-
-fast, concurrent, used a lot in system architecture and web applications.
-
-\textbf{Gorgonia}\\
-\textbf{Gorgo}\\
-\textbf{Go-ML}\\
-
-
+%----------------------------------------------------------------------------------------
+%	SECTION CONCLUSIONS
+%----------------------------------------------------------------------------------------
+\section{Conclusions}
