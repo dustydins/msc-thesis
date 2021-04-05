@@ -57,19 +57,18 @@ looking at its parameters~\citep{molnar2019}.
 Public calls for \textit{sensible} or \textit{verifiable \Gls{ai}} have been raised in recent years due to ever increasing
 development of complex and pervasive systems that are entering into our everyday lives~\citep{russell2016}.
 
-%-- current trends
-%-- TODO | change references to current verification systems
 Formal verification of deterministic software systems has seen significant progress since the early
-verification systems developed in languages such as Lisp, Ada, and Pascal~\citep{polak1979, boyer1990, guaspari1993}. However,
-verification of non-deterministic systems has seen relatively little progress, with the exception of
-\Glspl{mas}~\citep{lomuscio2017, kouvaros2016}.
+verification systems. These early systems~\citep{polak1979, boyer1990, guaspari1993} often struggled to be 
+widely adopted into industry applications. However, due to the ever increasing complexity of deployed
+software, new verification tools have been developed with the intent of being accessible to a wide range
+of industry software engineers~\citep{fisher2017}.
 
-%-- different languages often used for ml, than embedded/sys programming where formal verification widely used
-Indeed, due to the contemporary nature of \gls{aiv} research, there are limited resources with regard to the 
+On the other hand, verification of non-deterministic systems has 
+seen relatively little progress, with the exception of \Glspl{mas}~\citep{lomuscio2017, kouvaros2016}.
+Indeed, due to the nature of \gls{aiv} research, there are limited resources with regard to the 
 programming tools available for researchers in this area. This is especially true for work
 within \gls{ml}, as the programming languages and tools commonly used for \textit{traditional} verifcation are often
 disparate from those widely adopted by the \gls{ml} communities. 
-% Many libraries such as Coq and Z3 need additional bindings developed to work in these languages
 
 %-- ml languages
 Popular programming languages used for \gls{ml} such as Python or Matlab currently have comparitively less
@@ -95,6 +94,8 @@ to take advantage of automatic and symbolic differentiation, gradient descent op
 added support for CUDA/GPGPU computation, and comparitively quick speeds than its Python counterparts (Theano and TensorFlow)~\citep{golang2020}.
 
 % -- TODO | discuss Microsoft's efforts in F (as annotated by Katya)
+Another example of a programming paradigm shift towards dedicated \gls{ml} languages, is Microsoft's efforts in developing
+an efficient differentiable version of the \Gls{fp} language F~\citep{shaikhha2019}.
 
 %-- need for aiv development in other languages
 Consequently, as programming languages continue to develop \gls{ml} capabilities, there is a need for 
