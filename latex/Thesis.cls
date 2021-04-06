@@ -183,7 +183,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Formal Verification of Neural Networks in Go} % Your thesis title - this is used in the title and abstract
+\thesistitle{A Framework for Formally Verifying Neural Networks in Go} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Ekaterina \textsc{Komendanskaya}} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   

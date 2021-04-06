@@ -145,8 +145,8 @@ backpropagation is a computational technique commonly used within \gls{nn} train
 partial derivatives used for \gls{gd} algorithms in linear time with respect 
 to the number of weights being optimised. This is an important
 step in order to train \glspl{nn} within a sensible timeframe, considering the potentially
-high volume of weights that are needed for difficult tasks. A more detailed 
-investigation into this technique will be discussed later in this chapter.
+high volume of weights that are needed for complex tasks. A more detailed 
+investigation into this technique will be discussed later in this chapter (\textit{Section~\ref{section:paradigms}}).
 
 \subsection{Vulnerabilities to Adversarial Attacks}
 
@@ -162,24 +162,49 @@ which found properties of \glspl{nn} that cause them to learn uninterpretable so
 imperceptable non-random pertubartions are made to a test input, known as \textit{adversarial examples}~\citep{szegedy2014}. 
 Interestingly, these examples were shown to be robust, such that they have the same effect
 across models with varying architectures, activation functions, or trained on different datasets altogether. A tentative
-explanation for this phenomenon was to blame the non-linear nature of \glspl{nn}, and cases of overfitting on trained data.
+explanation for this phenomenon was to blame the non-linear nature of \glspl{nn}, and cases of poor generalisation on test data.
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{media/literature/adversarial-example.png}
+\center
+\includegraphics[width=0.9\textwidth]{media/literature/adversarial-example.png}
     \rule{35em}{0.5pt}
     \caption[Demonstration of the effects of adversarial examples]{\textbf{Effects of Adversarial Examples} -- A demonstration of the effects of adversarial examples; an input image of a panda with added noise causes the model to missclassify the image as a gibbon~\citep{goodfellow2015}.}\label{fig:adversarial-example}
 \end{figure}
 
 However in 2015, further attempts to explain \gls{nn} vulnerabilities to adversarial examples argued
-that it was not the non-linear nature, but rather the linear properties of \glspl{nn}~\citep{goodfellow2015}.
-This claim was supported by the authors' novel method for generatating new adversarial examples such that a model 
-can undertake adversarial training.
+that it was not the non-linear nature, but rather the linear behaviour of \glspl{nn} which is sufficient 
+to cause adversarial examples~\citep{goodfellow2015}. This claim was supported by the authors' demonstration that
+leveraging non-linear \gls{nn} families such as \Glspl{rbfn} can significantly reduce the vulnerabilities to adversarial examples.
 
-% ontology as a means to counteract attacks
+\begin{figure}[H]
+\center
+\includegraphics[width=0.9\textwidth]{media/literature/stop-sign.jpg}
+    \rule{35em}{0.5pt}
+    \caption[Demonstration of the effects of adversarial examples in real world]{\textbf{Effects of Adversarial Examples in Real World} -- A demonstration of how adversarial examples can be used in real world situations to cause misclassification of stop signs~\citep{eykholt2018}.}\label{fig:stop-sign}
+\end{figure}
 
-% raised concerns and trust issues with neural networks
+Research in 2018 showed that adversarial examples can be 
+used in real world situations in order to fool a \gls{dnn} used for street sign 
+recognition within a self-driving car's navigation system by placing black and white stickers
+on street signs (\textit{see Fig.~\ref{fig:stop-sign}})~\citep{eykholt2018}.
 
-\subsection{Discrimination \& Neural Networks}
+These vulnerabilities have demonstrated that \gls{nn} technology has yet to reach the level of
+maturity necessary for applications in safety-critical systems, and have raised
+concerns over the robustness of \glspl{nn} in general.
+
+
+\subsection{Descrimination \& Neural Networks}
+
+Aside from vulnerabilities caused by intrinsic properties of \glspl{nn}, there are
+issues which stem from the data being used to train supervised models too. That is,
+if the training data has inherent bias towards or against a specific class within the domain, the output 
+of the model trained on that data will reflect these biases. Subsequently, when \glspl{nn} trained on this data are
+used to aid decision making in areas which directly or indirectly affect people's lives, can
+result in simulated descrimination of certain social groups.
+
+Examples \ldots
+
+why verification is needed/can help \ldots
 
 % facial recognition
 
@@ -193,7 +218,7 @@ can undertake adversarial training.
 
 \section{Formal Verification}
 
-Formal verification is an extensive field which has seen development in many areas 
+Formal verification is a mature and extensive discipline which has seen development in many areas 
 of software engineering. As such, this section will attempt to provide a succinct 
 overview of the ideas behind formal verification while keeping the focus on areas
 related to this thesis.
@@ -220,7 +245,7 @@ undertaken within \gls{aiv}, with a focus on \glspl{nn} and deep learning tasks.
 %----------------------------------------------------------------------------------------
 %	SECTION PROGRAMMING PARADIGMS FOR ML
 %----------------------------------------------------------------------------------------
-\section{Programming Paradigms for Machine Learning}
+\section{Programming Paradigms for Machine Learning}\label{section:paradigms}
 
 \subsection{Computational Graphs}
 \subsection{Auto Differentiability}
