@@ -80,9 +80,47 @@ classify handwritten digits. The input is a single vector of 28x28 pixels, i.e. 
 \end{figure}
 
 % TODO: explain what deep learning is in context of  nns
+\glspl{nn} with a single hidden layer are able to approximate functions that contain any 
+continuous mapping from one finite space to another, whereas with no hidden layers a \gls{nn}
+model would only be able to represent linear functions or decision boundaries~\citep{hornik1991}.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{media/literature/deep-boundary.png}
+    \rule{35em}{0.5pt}
+    \caption[Complex decision boundary from deep neural network]{\textbf{Complex Decision Boundary} -- Example of a decision boundary made capable by deep learning~\citep{sapkota2020}}\label{fig:dnn-decision}
+\end{figure}
+
+\glspl{nn} are especially powerful when additional hidden layers are
+added to a network's architecture. By doing so, a model can not only approximate continuous functions
+to a high accuracy with less computational cost, but it can also represent complex composite 
+functions~\citep{sapkota2020}. An example of the complex decision boundaries that are possible from
+\glspl{nn} with more than one hidden layer can be seen in \textit{Fig.~\ref{fig:dnn-decision}}.
+
+\glspl{nn} with two or more hidden layers fall under the category of deep learning, and are often referred to as
+\Glspl{dnn} or \Glspl{mlp}. This subset
+of \gls{ml} has become increasingly powerful with the rise of powerful variations of \glspl{dnn}, namely \Glspl{cnn} and \Glspl{rnn} in recent years
+due to their successes within the field of \gls{cv}.
+% TODO make this paragraph nicer (add refs etc)
 
 \subsection{Learning \& Backpropagation}
-% TODO: explain how nns can be trained using backpropegation
+% TODO: explain how nns can be trained using backpropagation
+Training a \gls{nn} consists of iteratively adjusting the values of weights at
+each neuron in order to minimise the model's output error. Although there
+are many algorithms available for determining the optimum values of weights, a common approach
+is by using some flavour of \Gls{gd} 
+together with a technique for efficiently computing partial derivatives within a directed graph called \textit{backpropagation}.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{media/literature/gd-example.png}
+    \rule{35em}{0.5pt}
+    \caption[Example visualisation of gradient descent]{\textbf{Visualisation of \gls{gd} Search Space} -- An example of an \textit{ideal} search space, where the vertical $z$ axis shows the loss function $f(x, y)$, and $\vec{v}$ represents the resulting vector applied to the parameter in question~\citep{bendersky2016}.}\label{fig:gd-example}
+\end{figure}
+
+\gls{gd}, comes in many forms. The most popular \Gls{sgd} and \Gls{bgd} \dots
+
+backpropagation is a computational technique for calculating
+partial derivatives used for \gls{gd} algorithms in linear time. This is an important
+element of training neural networks in reasonable times.
 
 
 \subsection{Vulnerabilities to Adversarial Attacks}
