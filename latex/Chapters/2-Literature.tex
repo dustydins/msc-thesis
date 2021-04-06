@@ -61,7 +61,7 @@ within the range of $0 \text{ and } \infty$ (\textit{see Fig.~\ref{fig:activatio
     \includegraphics[width=0.5\textwidth]{media/literature/sigmoid.png}
     \includegraphics[width=0.5\textwidth]{media/literature/relu.png}
     \rule{35em}{0.5pt}
-    \caption[Examples of Activation Functions]{\textit{Left}: The Sigmoid Function is one type of activation function. ''A bounded, differentiable, real function that is defined for all real input values and has a non negative derivative at each point''~\citep{Han1995}. \textit{Right}: An example of a \Gls{relu} activation function transforming $x$ to a value between $0 \text{ and } \infty$~\citep{Malik2019activation}.}\label{fig:activation}
+    \caption[Examples of Activation Functions]{\textit{Left}: The Sigmoid Function is one type of activation function. `A bounded, differentiable, real function that is defined for all real input values and has a non negative derivative at each point'~\citep{Han1995}. \textit{Right}: An example of a \Gls{relu} activation function transforming $x$ to a value between $0 \text{ and } \infty$~\citep{Malik2019activation}.}\label{fig:activation}
 \end{figure}
 
 
@@ -102,7 +102,7 @@ of \gls{ml} has become increasingly powerful with the rise of powerful variation
 due to their successes within the field of \gls{cv}.
 % TODO make this paragraph nicer (add refs etc)
 
-\subsection{Learning \& Backpropagation}
+\subsection{Gradient Descent \& Backpropagation}
 % TODO: explain how nns can be trained using backpropagation
 Training a \gls{nn} consists of iteratively adjusting the values of weights at
 each neuron in order to minimise the model's output error. Although there
@@ -110,22 +110,82 @@ are many algorithms available for determining the optimum values of weights, a c
 is by using some flavour of \Gls{gd} 
 together with a technique for efficiently computing partial derivatives within a directed graph called \textit{backpropagation}.
 
+There are three main variants of \gls{gd}; vanilla \gls{gd} or \Gls{bgd}, \Gls{sgd}, and \Gls{mbgd}.
+
+\gls{bgd} computes the gradients of a cost function with regards to the weights within an entire training set.
+The cost function can take many forms depending on the architecture of the \gls{nn} and the task it is concerned with,
+however the main principle behind it is to map the different
+values of each weight to a score which determines how well the model performs~\citep{shung2018}.
+
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{media/literature/gd-example.png}
     \rule{35em}{0.5pt}
-    \caption[Example visualisation of gradient descent]{\textbf{Visualisation of \gls{gd} Search Space} -- An example of an \textit{ideal} search space, where the vertical $z$ axis shows the loss function $f(x, y)$, and $\vec{v}$ represents the resulting vector applied to the parameter in question~\citep{bendersky2016}.}\label{fig:gd-example}
+    \caption[Example visualisation of gradient descent]{\textbf{Visualisation of \gls{gd} Search Space} -- An example of an \textit{ideal} search space, where the vertical $z$ axis shows the cost function $f(x, y)$, and $\vec{v}$ represents the resulting vector applied to the parameter in question~\citep{bendersky2016}.}\label{fig:gd-example}
 \end{figure}
 
-\gls{gd}, comes in many forms. The most popular \Gls{sgd} and \Gls{bgd} \dots
+A search space can then be defined by plotting the output of a cost function against the values of the weights
+it is concerned with, an example of such a search space with two weights can be seen in \textit{Fig.~\ref{fig:gd-example}}.
+As the number of weights increases, the harder it becomes to visualise the contours of a multi-dimensional plane. 
+\gls{bgd} then computes the directional derivative of this plane given a set of weight values, and uses this value
+as a vector with a magnitude defined by a \textit{learning rate} hyper-parameter to update the weights of the network~\citep{ruder2017}.
 
-backpropagation is a computational technique for calculating
-partial derivatives used for \gls{gd} algorithms in linear time. This is an important
-element of training neural networks in reasonable times.
+\gls{sgd} attempts to reduce the number of 
+computations during training by only performing updates
+to weights for each training example instead of recomputing gradients for similar weights
+at each iteration. By removing these redundant calculations, \gls{sgd} typically decreases the time taken
+to converge to an optimum solution of weights. Additionally, due to the high variance of
+each update, and so long as the learning rate is steadily decreased at each iteration, \gls{sgd} has an equal
+chance at finding the global minimum than \gls{bgd}~\citep{ruder2017}.
 
+\gls{mbgd} on the other hand, attempts to combine the benefits from \gls{bgd} and \gls{sgd} by 
+performing an update for every mini-batch of $n$ training examples. Therefore, allowing for the precision of
+\gls{bgd} with similar speeds as \gls{sgd}.
+
+backpropagation is a computational technique commonly used within \gls{nn} training for calculating
+partial derivatives used for \gls{gd} algorithms in linear time with respect 
+to the number of weights being optimised. This is an important
+step in order to train \glspl{nn} within a sensible timeframe, considering the potentially
+high volume of weights that are needed for difficult tasks. A more detailed 
+investigation into this technique will be discussed later in this chapter.
 
 \subsection{Vulnerabilities to Adversarial Attacks}
 
-\subsection{Discrimination and Neural Networks}
+\glspl{nn} and \glspl{dnn} have been adopted and deployed within a wide
+range of industry applications for tasks such as speech recognition or facial recognition, 
+and have shown to perform adequately for many of these tasks. However, as mentioned in \textit{Chapter~\ref{Chapter1}}, \glspl{nn} have been shown to be
+vulnerable to adversarial attacks. Specifically, by adding small, imperceptable changes
+to the input features, can lead to abnormal behaviours such as missclassification in the output layer.
+
+% 3 examples of adversarial attacks on nns (not Google's sticker one)
+This observation was first discovered in 2014,
+which found properties of \glspl{nn} that cause them to learn uninterpretable solutions that could have counter-intuitive properties when
+imperceptable non-random pertubartions are made to a test input, known as \textit{adversarial examples}~\citep{szegedy2014}. 
+Interestingly, these examples were shown to be robust, such that they have the same effect
+across models with varying architectures, activation functions, or trained on different datasets altogether. A tentative
+explanation for this phenomenon was to blame the non-linear nature of \glspl{nn}, and cases of overfitting on trained data.
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{media/literature/adversarial-example.png}
+    \rule{35em}{0.5pt}
+    \caption[Demonstration of the effects of adversarial examples]{\textbf{Effects of Adversarial Examples} -- A demonstration of the effects of adversarial examples; an input image of a panda with added noise causes the model to missclassify the image as a gibbon~\citep{goodfellow2015}.}\label{fig:adversarial-example}
+\end{figure}
+
+However in 2015, further attempts to explain \gls{nn} vulnerabilities to adversarial examples argued
+that it was not the non-linear nature, but rather the linear properties of \glspl{nn}~\citep{goodfellow2015}.
+This claim was supported by the authors' novel method for generatating new adversarial examples such that a model 
+can undertake adversarial training.
+
+% ontology as a means to counteract attacks
+
+% raised concerns and trust issues with neural networks
+
+\subsection{Discrimination \& Neural Networks}
+
+% facial recognition
+
+% sexist ai in hiring tasks
+
+%
 
 %----------------------------------------------------------------------------------------
 %	SECTION Formal Verification
