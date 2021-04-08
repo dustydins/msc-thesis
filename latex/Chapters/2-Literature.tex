@@ -6,7 +6,7 @@
 
 This chapter will provide a background understanding to the important concepts that are required by this thesis, and explore the
 current trends within \Gls{aiv} research.
-This includes an introduction to formal verification, both within deterministic and non-deterministic systems; an overview of the
+This includes an introduction to formal verification, both within traditional and \gls{ml} software systems; an overview of the
 current state of \Gls{nn} and deep learning research, and the programming paradigms used for their development; and finally an 
 investigation into the Go programming language infrastructure and the feasibility of using it for verifying \glspl{nn}.
 
@@ -14,9 +14,10 @@ investigation into the Go programming language infrastructure and the feasibilit
 %	SECTION NEURAL NETWORKS
 %----------------------------------------------------------------------------------------
 \section{Neural Networks \& Deep Learning}
-This section aims to clarify the concepts of \glspl{nn} and deep learning, as well as
-to show the successes and failures of the field, and to demonstrate the need for
-formal approaches for developing such algorithms.
+
+% This section aims to clarify the concepts of \glspl{nn} and deep learning, as well as
+% to show the successes and failures of the field, and to demonstrate the need for
+% formal approaches for developing such algorithms.
 
 \subsection{Overview}
 
@@ -35,7 +36,7 @@ nodes, which are analogous to synapses and neurons in nature~\citep{Sammut2010}.
 \end{figure}
 
 
-A weight is assigned to each of a neuron's inputs. They are the co-efficients of a neuron's equation and therefore reflect the importance of individual inputs. A bias is a constant value assigned to each neuron. They are used to shift a neuron's activation function output in a positive or negative direction~\citep{Malik2019weights}.
+A weight is assigned to each of a neuron's inputs. They are the coefficients of a neuron's equation and therefore reflect the importance of individual inputs. A bias is a constant value assigned to each neuron. They are used to shift a neuron's activation function output in a positive or negative direction~\citep{Malik2019weights}.
 
 A \Gls{nn} is made up of a series of layers; an input layer,
 a number of hidden layers, and an output layer. Each layer is
@@ -53,28 +54,28 @@ Often, activation functions in modern \Glspl{nn} output non-linearities,
 an example is to use a Sigmoid Function which maps an input to a value between 0 and 1 
 (\textit{see Fig.~\ref{fig:activation} \textit{left}})~\citep{Nielsen2015}.
 
-However a more common activation function found in current \gls{nn} models for \gls{cv} is the \gls{relu}.
-It also adds non-linearity to the output, however it maps the input to a value
+However a more common activation function found in current \gls{nn} models is the \gls{relu}.
+Although computed as a piecewise linear function, \gls{relu} also adds non-linearity to the output. The \gls{relu} function maps an input to a value
 within the range of $0 \text{ and } \infty$ (\textit{see Fig.~\ref{fig:activation} \textit{right}})~\citep{Malik2019activation}.
 
 \begin{figure}[H]
     \includegraphics[width=0.5\textwidth]{media/literature/sigmoid.png}
     \includegraphics[width=0.5\textwidth]{media/literature/relu.png}
     \rule{35em}{0.5pt}
-    \caption[Examples of Activation Functions]{\textit{Left}: The Sigmoid Function is one type of activation function. `A bounded, differentiable, real function that is defined for all real input values and has a non negative derivative at each point'~\citep{Han1995}. \textit{Right}: An example of a \Gls{relu} activation function transforming $x$ to a value between $0 \text{ and } \infty$~\citep{Malik2019activation}.}\label{fig:activation}
+    \caption[Examples of activation functions]{\textit{Left}: The Sigmoid Function is one type of activation function. `A bounded, differentiable, real function that is defined for all real input values and has a non negative derivative at each point'~\citep{Han1995}. \textit{Right}: An example of a \Gls{relu} activation function transforming $x$ to a value between $0 \text{ and } \infty$~\citep{Malik2019activation}.}\label{fig:activation}
 \end{figure}
 
 
 The output layer of a \gls{cv} classification network contains neurons representing the class
 scores of the task (\textit{see Fig.~\ref{fig:nn}}). For example, in a \gls{nn} attempting to classify handwritten
 digits, the output layer would contain 10 neurons, representing the digits 0 - 9.
-If the first neuron fires, i.e.\ has an output $\approx l,$ this will indicate that the
+If the first neuron fires, i.e.\ has an output $\approx 1,$ this will indicate that the
 network is confident the handwritten digit is 0, and so on~\citep{Nielsen2015}.
 
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{media/literature/handwrittenDigitNN.png}
     \rule{35em}{0.5pt}
-\caption[Example of a Neural Network]{Neural Network. Example of a \Gls{nn} to
+\caption[Example of a neural network]{Neural Network. Example of a \Gls{nn} to
 classify handwritten digits. The input is a single vector of 28x28 pixels, i.e. 784 neurons, and outputs
 10 neurons representing digits 0-9~\citep{Nielsen2015}.}\label{fig:nn}
 \end{figure}
@@ -107,10 +108,10 @@ due to their successes within the field of \gls{cv}.
 Training a \gls{nn} consists of iteratively adjusting the values of weights at
 each neuron in order to minimise the model's output error. Although there
 are many algorithms available for determining the optimum values of weights, a common approach
-is by using some flavour of \Gls{gd} 
+is to use some flavour of \textit{gradient descent} 
 together with a technique for efficiently computing partial derivatives within a directed graph called \textit{backpropagation}.
 
-There are three main variants of \gls{gd}; vanilla \gls{gd} or \Gls{bgd}, \Gls{sgd}, and \Gls{mbgd}.
+There are three main variants of gradient descent; vanilla gradient descent or \Gls{bgd}, \Gls{sgd}, and \Gls{mbgd}.
 
 \gls{bgd} computes the gradients of a cost function with regards to the weights within an entire training set.
 The cost function can take many forms depending on the architecture of the \gls{nn} and the task it is concerned with,
@@ -120,7 +121,7 @@ values of each weight to a score which determines how well the model performs~\c
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{media/literature/gd-example.png}
     \rule{35em}{0.5pt}
-    \caption[Example visualisation of gradient descent]{\textbf{Visualisation of \gls{gd} Search Space} -- An example of an \textit{ideal} search space, where the vertical $z$ axis shows the cost function $f(x, y)$, and $\vec{v}$ represents the resulting vector applied to the parameter in question~\citep{bendersky2016}.}\label{fig:gd-example}
+    \caption[Example visualisation of gradient descent]{\textbf{Visualisation of Gradient Descent Search Space} -- An example of an \textit{ideal} search space, where the vertical $z$ axis shows the cost function $f(x, y)$, and $\vec{v}$ represents the resulting direction of the maximum gradient applied to the parameter in question~\citep{bendersky2016}.}\label{fig:gd-example}
 \end{figure}
 
 A search space can then be defined by plotting the output of a cost function against the values of the weights
@@ -135,20 +136,20 @@ to weights for each training example instead of recomputing gradients for simila
 at each iteration. By removing these redundant calculations, \gls{sgd} typically decreases the time taken
 to converge to an optimum solution of weights. Additionally, due to the high variance of
 each update, and so long as the learning rate is steadily decreased at each iteration, \gls{sgd} has an equal
-chance at finding the global minimum than \gls{bgd}~\citep{ruder2017}.
+chance at finding the global minimum to \gls{bgd}~\citep{ruder2017}.
 
 \gls{mbgd} on the other hand, attempts to combine the benefits from \gls{bgd} and \gls{sgd} by 
 performing an update for every mini-batch of $n$ training examples. Therefore, allowing for the precision of
 \gls{bgd} with similar speeds as \gls{sgd}.
 
-backpropagation is a computational technique commonly used within \gls{nn} training for calculating
-partial derivatives used for \gls{gd} algorithms in linear time with respect 
+Backpropagation is a computational technique commonly used within \gls{nn} training for calculating
+partial derivatives used for gradient descent algorithms in linear time with respect 
 to the number of weights being optimised. This is an important
 step in order to train \glspl{nn} within a sensible timeframe, considering the potentially
 high volume of weights that are needed for complex tasks. A more detailed 
 investigation into this technique will be discussed later in this chapter (\textit{Section~\ref{section:paradigms}}).
 
-\subsection{Vulnerabilities to Adversarial Attacks}
+\subsection{Vulnerabilities to Adversarial Attacks}\label{section:adversarial}
 
 \glspl{nn} and \glspl{dnn} have been adopted and deployed within a wide
 range of industry applications for tasks such as speech recognition or facial recognition, 
@@ -157,11 +158,11 @@ vulnerable to adversarial attacks. Specifically, by adding small, imperceptable 
 to the input features, can lead to abnormal behaviours such as missclassification in the output layer.
 
 % 3 examples of adversarial attacks on nns (not Google's sticker one)
-This observation was first discovered in 2014,
+This observation was first made in 2014,
 which found properties of \glspl{nn} that cause them to learn uninterpretable solutions that could have counter-intuitive properties when
 imperceptable non-random pertubartions are made to a test input, known as \textit{adversarial examples}~\citep{szegedy2014}. 
 Interestingly, these examples were shown to be robust, such that they have the same effect
-across models with varying architectures, activation functions, or trained on different datasets altogether. A tentative
+across models with varying architectures, activation functions, or trained on different data sets altogether. A tentative
 explanation for this phenomenon was to blame the non-linear nature of \glspl{nn}, and cases of poor generalisation on test data.
 
 \begin{figure}[H]
@@ -193,25 +194,34 @@ maturity necessary for applications in safety-critical systems, and have raised
 concerns over the robustness of \glspl{nn} in general.
 
 
-\subsection{Descrimination \& Neural Networks}
+\subsection{Descrimination \& Neural Networks}\label{section:descrimination}
 
 Aside from vulnerabilities caused by intrinsic properties of \glspl{nn}, there are
 issues which stem from the data being used to train supervised models too. That is,
 if the training data has inherent bias towards or against a specific class within the domain, the output 
-of the model trained on that data will reflect these biases. Subsequently, when \glspl{nn} trained on this data are
-used to aid decision making in areas which directly or indirectly affect people's lives, can
-result in simulated descrimination of certain social groups.
+of the model trained on that data will reflect these biases (\textit{see Fig.~\ref{fig:bias-nn}}). 
+Subsequently, when bias data is used to train \glspl{nn} used in applications which have either a direct or
+indirect affect on people's lives, there is a chance that they can result in simulated descrimination of certain social groups.
 
-Examples \ldots
+\begin{figure}[H]
+\center
+\includegraphics[width=1\textwidth]{media/literature/bias-nn.png}
+    \rule{35em}{0.5pt}
+    \caption[Example of negative bias effects in neural networks]{\textbf{Discriminating Bias in Training Data} -- An example of how image captioning \glspl{nn} use the features present in a bias data set to generate either incorrect captions (\textit{left}), or use the wrong features to generate correct captions (\textit{right})~\citep{burns2019}.}\label{fig:bias-nn}
+\end{figure}
 
-why verification is needed/can help \ldots
+In recent years, there have been many attempts to mitigate the effects of unwanted bias in 
+data being fed to \glspl{nn}. These include work in facial recognition, where a model is trained
+separately on demographic representations prior to being trained on face attribute data, thus 
+preserving potential users' demographic privacy~\citep{ryu2018}; or more recently, developing new regularisation techniques for \Glspl{gan} which 
+allow a model to categorise classes while ignoring bias features in the training data~\citep{kim2019}.
 
-% facial recognition
 
-% sexist ai in hiring tasks
-
-%
-
+Although there has been significant progress in this area of research and that discussed in \textit{Section~\ref{section:adversarial}}, 
+many of the proposed solutions
+have not yet become ubiquitous in industry. As such, there
+is a need for creating formal methods which allow developers to verify the fairness and robustness of their
+systems in a wide range of programming environments.
 %----------------------------------------------------------------------------------------
 %	SECTION Formal Verification
 %----------------------------------------------------------------------------------------
@@ -225,30 +235,99 @@ related to this thesis.
 
 \subsection{Background}
 
+Although formal verification stems from a long history of development within the fields
+of classical and first-order logic~\citep{smith2011, boole2009, russell1937}, this thesis is concerned with modern formal methods
+used for software engineering tasks, and thus will use the following definition.
 
-\subsection{Current Frameworks}
+Formal verification is defined by a set
+of mathematical tools used to analyse the space of possible system 
+states both in hardware and software~\citep{seligman2015}. In other words,
+checking that a system will not produce abnormal behaviours given a 
+specific input, or to verify the correctness of hardware or software design~\citep{grout2008}.
 
+Early software systems were typically verified by hand when necessary. However, as 
+the size and complexity of software increased over time, so too did the computational
+cost of exhaustively verifying them. As such, huge efforts have been made over the past few decades
+to develop formal methods frameworks which utilise the power of computing for software engineers.
+
+\subsection{Theorem Provers}
+
+The earliest approach for formally verifying software, and still commonly used, is with theorem provers.
+Theorem provers were initially developed as interactive, or computer assisted frameworks, however over
+time the much harder task of automated theorem provers were introduced.
+
+These tools allow developers to formalise theorems using some variant of mathematical logic,
+such as propositional logic, predicate logic, or first-order logic to name a few. Then, by 
+using \textit{proof checking}, one can establishes the validity of a theorem by mechanically checking the proof~\citep{geuvers2009}.
+
+
+\subsection{Model Checkers}
+
+Model checking is another branch of formal verification for software that
+came along after theorem provers. This technique consists of three main tasks, \textit{modelling}, \textit{specification}, and \textit{verification}.
+
+Modelling is the process of converting a system design into a formalism accepted by a model checking tool. Once this process has 
+finished, a specification of the properties in which a design should satisfy must be provided before verification. Once a model and
+a specification have been provided, the process of verifying the system can occur. In an ideal world, the final stage can be automated, but
+often it is necessary to manually analyse the verification results~\citep{clarke2018}.
+
+In other words, given a program $P$ and a specified property $\phi$, the primary goal of a model checker
+is to search the space of possible states of $P$, and ensure that $\phi$ holds in all scenarios~\citep{zhang2019}.
 %----------------------------------------------------------------------------------------
 %	SECTION Formal Verification AI
 %----------------------------------------------------------------------------------------
 
-\section{Formal Verification of AI}
+\section{Formal Verification of Neural Networks}
 
-This section will provide a more detailed investigation into the current research
-undertaken within \gls{aiv}, with a focus on \glspl{nn} and deep learning tasks.
+In recent years, there has been growing interest in using formal verification tools
+within the field of \gls{ai}~\citep{russell2016}. Although there have been promising advancements
+in areas such as \gls{mas}~\citep{lomuscio2017, kouvaros2016}, there is significantly less research
+regarding the formal verification of \glspl{nn}.
 
-\subsection{Overview}
+The most common methods for evaluating \glspl{nn} rely on testing models on 
+previously unseen data, which can provide statistical guarantees regarding accuracy
+and generalisation. However this approach tends to be incomplete as it does not provide an 
+exhaustive search of all possible inputs to the network~\citep{akintunde2020}.
 
-\subsection{Sapphire}
+Initial attempts at formally verifying \glspl{nn} focused on using \textit{reachability }\textit{analysis }as 
+a verifiable property. \textit{Reachability }\textit{analysis} is concerned with determining whether
+a given state is reachable in a number of steps from an initial state of a system \citep{akintunde2018}.
+The idea behind conducting such an analysis, is that it is then possible to verify
+that an unwanted state of a system such as those discussed in \textit{Sections~\ref{section:adversarial} \&~\ref{section:descrimination}} 
+is never reached during the lifecycle of the system.
 
+% katz
+
+
+% sappire
+
+Thus far, this area of research is still in its early stages, however fast progress has been made
+in demonstrating how it is possible to achieve real-world scalability \textit{w.r.t }verifying \glspl{nn}~\citep{pulina2010, xiang2018}, including 
+a handful of deep structures such as \glspl{cnn}~\citep{kouvaros2018} and \glspl{rnn}~\citep{zhang2020}.
+
+Additionally, progress has been made in developing tools designed to utilise the many formal methods that
+have been worked on for decades which allow developers to analyse and verify their models easily.
+This includes tools such as the Maribou Framework for \glspl{dnn}~\citep{katz2019}, which builds on the 
+authors' previous work in using \gls{smt}-based techniques to verify \glspl{dnn}; and
+the Sapphire Python library~\citep{kokke2020}, which translates TensorFlow feed-forward \gls{nn} model queries to the Z3 \Gls{smt} solver created by Microsoft Research~\citep{demoura2008}.
+
+However, as \gls{nn} development is starting to become prevalent across a wider range of programming languages and
+paradigms, it is important for further work to be made in developing new frameworks for formally verifying \glspl{nn}, and to 
+investigate how different programming language infrastructures can affect this development.
 
 %----------------------------------------------------------------------------------------
 %	SECTION PROGRAMMING PARADIGMS FOR ML
 %----------------------------------------------------------------------------------------
-\section{Programming Paradigms for Machine Learning}\label{section:paradigms}
+\section{Programming Paradigms for Deep Learning}\label{section:paradigms}
+
+As \glspl{nn} and \glspl{dnn} become more and more ubiquitous in software applications, so to does
+the number of weights needed for them to perform adequately for their tasks. As such, an enormous amount
+of work has gone into ensuring the toolkits used by \gls{ml} engineers allow for scalable and efficient development
+of such models.
+
+\subsection{Auto Differentiability}
 
 \subsection{Computational Graphs}
-\subsection{Auto Differentiability}
 
 %----------------------------------------------------------------------------------------
 %	SECTION PROGRAMMING The Go Programming Language
