@@ -1,11 +1,52 @@
-% Chapter Template
-
-\chapter{Methodology} % Main chapter title
-
-\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\chapter{Methodology}\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 \lhead{Chapter 3. \emph{Methodology}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
+
+\section{Deliverables}
+
+This project aims to extend previous work in formally verifying \glspl{nn}, consisting
+of three deliverables. The first will provide a review of the current literature, which will
+explore the relevant fields of research and give a solid background of the concepts used in this thesis.
+The second will provide a framework developed in the Go programming language, which will allow
+developers to translate Gorgonia queries into the Z3 \gls{smt} solver for the purpose of formally
+verifying \glspl{nn}. Finally, a demonstration of this framework using a series of example training data sets will be provided.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Requirements}
+
+The delivery of this project will mostly be focused on creating an implemented
+Go package, and as such falls under the category of software development. Therefore, this
+thesis includes a number of functional and non-functional requirements.
+
+\subsection{Functional}
+
+\begin{enumerate}
+    \item Develop an interface which allows Gorgonia model queries to be bound to Z3 solvers using the Go package, \textit{Go-Z3.} (\textit{Objective 2, High Priority})
+    \item The developed program should be able to provide sensible and informative output to the user. (\textit{Objective 2, High Priority})
+    \item Develop a \textit{sandbox} for designing, implementing, and demonstrating this project's proposed framework on Gorgonia \glspl{nn}. (\textit{Objective 4, High Priority})
+    \item The sandbox should consist of a set of CLI tools which allow users to select and run pre-built demonstrations. (\textit{Objective 4, Low Priority})
+\end{enumerate}
+
+\subsection{Non-Functional}
+
+In addition to the above requirements, this project should consider the following non-functional requirements.
+
+\begin{enumerate}
+    \item Accompanying documentation should be supplied, which provides clear and detailed representations of the system and instructions for use. (\textit{Objective 2, High Priority})
+    \item No unnecessary package requirements should be used which could potentially cause future deprecations. (\textit{Medium Priority})
+    \item The developed package should include a high degree of extensibility, in order to decrease efforts when extending the system for updates in the Gorgonia package. (\textit{Objective 2, Medium Priority})
+
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+
