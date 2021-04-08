@@ -320,25 +320,41 @@ investigate how different programming language infrastructures can affect this d
 %----------------------------------------------------------------------------------------
 \section{Programming Paradigms for Deep Learning}\label{section:paradigms}
 
-As \glspl{nn} and \glspl{dnn} become more and more ubiquitous in software applications, so to does
-the number of weights needed for them to perform adequately for their tasks. As such, an enormous amount
+\gls{ml} has to date offered incredibly powerful software tools for developing complex
+systems quickly compared to \textit{traditional} programming techniques. However, as these
+systems grow in size to deal with harder tasks such as \gls{cv} or natural language generation, 
+so to does the risk of incurring large ongoing computational costs~\citep{sculley2015}. As such, an enormous amount
 of work has gone into ensuring the toolkits used by \gls{ml} engineers allow for scalable and efficient development
-of such models.
+of their models.
 
-\subsection{Auto Differentiability}
+\subsection{Automatic Differentiation}
 
-\subsection{Computational Graphs}
+The biggest challenge when computing the necessary steps of training \glspl{nn}, lies
+in the need for calculating hundreds, if not thousands, of partial derivatives in order
+to find the directional gradient for optimising the model's weights~\citep{steinitz2013}.
 
-%----------------------------------------------------------------------------------------
-%	SECTION PROGRAMMING The Go Programming Language
-%----------------------------------------------------------------------------------------
-\section{The Go Programming Language}
+Although \gls{sd} is used within computing~\citep{maxima2020, trott2006}, since it can be useful when there is a need to 
+produce a legible symbolic description of a derivative, it has shown poor performance when 
+handling common data structures which appear in \gls{ml} algorithms~\citep{achyutuni2020}.
 
-\subsection{Brief History}
-\subsection{Go for ML}
-\subsection{Go for Formal Verification}
+\Gls{ad} is a technique which has been adopted by the most successful \gls{ml} frameworks
+such as TensorFlow and Theano in Python, as well as emerging frameworks such as Gorgonia in Go.
+
+The idea behind \gls{ad} stems from the ability to break down any arbitrary function, in this case a \gls{nn}, within a program 
+into a computational graph of \textit{atomic} mathematical functions. This in turn allows the derivative
+of the function to be represented as a computational graph, which can be built simultaneously as
+a \gls{nn} is being constructed~\citep{baydin2015}.
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION CONCLUSIONS
 %----------------------------------------------------------------------------------------
 \section{Conclusions}
+
+\glspl{nn} and \glspl{dnn} are becoming an ubiquitous part of a software engineer's toolkit. As these
+programming paradigms become increasingly complex, so too does the nature of formally verifying them.
+This section has highlighted the current approaches being used to tackle this issue, and how these
+techniques are becoming more available to developers through tools like Maribou and Sapphire~\citep{katz2019, kokke2020}.
+
+As \gls{ml} capabilities are being developed across an extended variety of programming languages~\citep{golang2020, shaikhha2019}, it is important to 
+ensure that formal methods of verifying these complex models are also explored and ultimately implemented.
